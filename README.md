@@ -5,32 +5,39 @@ consent. The agent talks only to `https://aim.tino.vn/mcp`; you sign in and
 approve scopes in your own browser, and you can revoke the connection any time
 from your TINO account portal.
 
-This repository holds the manually installable packages. Connector manifests
-and skills are generated from the TINO product source; this launcher and guide
-are maintained with each release. Please send feedback to support@tino.vn.
+This public repository contains the installers, connector packages, and seven
+skills shipped with Tino Connector. What you inspect at
+[github.com/tinovn/tino-connector](https://github.com/tinovn/tino-connector)
+is what the installers use. Please send feedback to support@tino.vn.
 
-## Quick install
+## One-command install
 
-Download the installer, then run it:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/tinovn/tino-connector/main/install.sh -o install.sh
-bash install.sh
-```
-
-`bash install.sh` opens one menu for Claude Code, VS Code, Cursor, Codex, Zed
-and Hermes Agent. To install or update selected clients without the menu, pass
-their names directly:
+macOS or Linux:
 
 ```bash
-bash install.sh claude
-bash install.sh vscode cursor codex
-bash install.sh zed hermes
+curl -fsSL https://aim.tino.vn/connect | bash
 ```
 
-The repository deliberately does not recommend piping a remote download into
-a shell. You can inspect `install.sh` before running it. Sign-in and consent
-always happen in your own browser.
+Windows PowerShell:
+
+```powershell
+irm https://aim.tino.vn/install.ps1 | iex
+```
+
+Windows Command Prompt can download and run
+[`install.cmd`](https://github.com/tinovn/tino-connector/blob/main/install.cmd),
+which opens the same PowerShell menu.
+
+Both `aim.tino.vn` installer URLs serve the matching scripts from this public
+repository, so the source shown here is the source that runs.
+
+The menu covers Claude Code, VS Code, Cursor, Codex, Zed, Hermes Agent, and a
+manual Remote MCP option. If you download a script first, you can select
+clients without the menu, for example `bash install.sh claude codex hermes` or
+`.\install.ps1 claude codex hermes`. The installers call each client's official
+plugin command or add the Remote MCP declaration; they do not install `tino`
+CLI and do not ask for a TINO password or token. OAuth sign-in and consent
+happen in your browser.
 
 ## Claude Code
 
@@ -69,6 +76,17 @@ Restart Hermes Agent, then authenticate the saved connection with
 consent; after that Hermes loads the Remote MCP tools and the same seven
 skills. Later updates replace the plugin and skills together with
 `hermes plugins update tino-connect`.
+
+## Manual Remote MCP
+
+Any client that accepts a Remote MCP declaration can use:
+
+```json
+{"mcpServers":{"tino-connect":{"type":"http","url":"https://aim.tino.vn/mcp"}}}
+```
+
+This only tells the client where Tino Connector is. The client performs OAuth
+in your browser; no TINO credential belongs in this JSON.
 
 ## Other MCP clients
 
