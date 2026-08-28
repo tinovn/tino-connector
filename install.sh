@@ -116,6 +116,22 @@ install_zed() {
   say "  chép zed/.agents/skills/ vào dự án nếu client của bạn đọc skill cục bộ."
 }
 
+ensure_hermes_mcp_config() {
+  local current_url=""
+  if current_url=$(hermes config get mcp_servers.tino-connect.url 2>/dev/null); then
+    if [ "$current_url" != "$MCP_URL" ]; then
+      warn "đã có MCP server tino-connect trỏ tới $current_url — không tự ghi đè"
+      return 1
+    fi
+  elif ! hermes config set mcp_servers.tino-connect.url "$MCP_URL" >/dev/null; then
+    warn "không khai báo được MCP server tino-connect"
+    return 1
+  fi
+
+  hermes config set mcp_servers.tino-connect.auth oauth >/dev/null || return 1
+  hermes config set mcp_servers.tino-connect.strict_redirect_headers true >/dev/null || return 1
+}
+
 install_hermes() {
   say "== Hermes Agent"
   local fresh_install=0
@@ -130,6 +146,10 @@ install_hermes() {
     ok "plugin đã có sẵn — vừa cập nhật plugin và toàn bộ skill"
   else
     warn "không cài được tự động; chạy tay: hermes plugins install $MARKETPLACE_REPO --enable"
+    return
+  fi
+  if ! ensure_hermes_mcp_config; then
+    warn "plugin đã cài nhưng chưa cấu hình được Remote MCP; không bắt đầu OAuth"
     return
   fi
   if [ "$fresh_install" -eq 1 ]; then
