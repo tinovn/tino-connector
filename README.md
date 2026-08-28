@@ -1,130 +1,123 @@
 # Tino Connector
 
-Connect your AI agent or IDE to your TINO account over Remote MCP with OAuth
-consent. The agent talks only to `https://aim.tino.vn/mcp`; you sign in and
-approve scopes in your own browser, and you can revoke the connection any time
-from your TINO account portal.
+Kết nối trợ lý AI hoặc IDE với tài khoản TINO qua Remote MCP và cơ chế đồng ý
+OAuth. Trợ lý chỉ kết nối đến `https://aim.tino.vn/mcp`; bạn đăng nhập, duyệt
+phạm vi quyền trong trình duyệt của mình và có thể thu hồi kết nối bất cứ lúc nào tại
+cổng quản lý tài khoản TINO.
 
-This public repository contains the installers, connector packages, and seven
-skills shipped with Tino Connector. What you inspect at
+Kho mã nguồn công khai này chứa bộ cài, các gói trình kết nối và bảy kỹ năng
+được phát hành cùng Tino Connector. Nội dung bạn thấy tại
 [github.com/tinovn/tino-connector](https://github.com/tinovn/tino-connector)
-is what the installers use. Please send feedback to support@tino.vn.
+chính là nội dung được bộ cài sử dụng. Gửi phản hồi đến support@tino.vn.
 
-## What you can do after connecting
+## Có thể làm gì sau khi kết nối
 
-Tino Connector gives your AI agent TINO-aware skills plus the Remote MCP tools
-needed to carry them out. It does not add a separate management screen: open
-the normal agent or chat for your project and describe the result you want.
+Tino Connector cung cấp cho trợ lý AI các kỹ năng hiểu hệ thống TINO và những
+công cụ Remote MCP cần thiết để thực hiện công việc. Tino Connector không tạo
+thêm màn hình quản trị riêng; hãy mở giao diện trợ lý hoặc trò chuyện bình thường trong
+dự án rồi mô tả kết quả bạn muốn.
 
-| Capability | What the agent can do |
+| Khả năng | Trợ lý có thể làm gì |
 | --- | --- |
-| **Account and billing** | Read your account profile, phone-verification status, approved scopes, service summary, and due invoices when available. |
-| **Hosting, VPS, and domains** | List the services you already own, including status, product, billing cycle, renewal or expiry date, and deployment readiness. |
-| **Website diagnosis** | Run DNS and HTTP checks from your computer, then compare the public result with your TINO domain, service, suspension, and invoice status. |
-| **Deployment recommendation** | Inspect the project locally, reuse an existing service when suitable, and recommend shared hosting for static/PHP/WordPress workloads or a VPS for Node.js, Python, containers, workers, and root-level requirements. |
-| **Purchase services and domains** | Browse the TINO catalog and billing cycles, check domain availability and registration fields, present the price for approval, create the confirmed order, retrieve its invoice and payment link, and verify activation after payment. |
-| **Deploy from your computer** | Request expiring VPS or cPanel access, then let your local agent build and upload the project directly. Fresh Ubuntu 24.04 or 26.04 VPS instances can use the maintained TINO LEMP bootstrap before application setup. |
-| **DNS and go-live** | Plan and apply supported records for an owned apex domain or subdomain, point it to the deployed service, and verify the public DNS result. External DNS stays under your control and receives manual instructions instead. |
+| **Tài khoản và thanh toán** | Đọc hồ sơ tài khoản, trạng thái xác minh số điện thoại, phạm vi quyền đã duyệt, tổng quan dịch vụ và hóa đơn đến hạn khi dữ liệu này khả dụng. |
+| **Hosting, VPS và tên miền** | Liệt kê các dịch vụ bạn đang sở hữu, gồm trạng thái, sản phẩm, chu kỳ thanh toán, ngày gia hạn hoặc hết hạn và mức độ sẵn sàng để triển khai. |
+| **Chẩn đoán website** | Kiểm tra DNS và HTTP từ máy của bạn, sau đó đối chiếu kết quả công khai với trạng thái tên miền, dịch vụ, đình chỉ và hóa đơn tại TINO. |
+| **Đề xuất môi trường triển khai** | Phân tích dự án tại máy khách, ưu tiên dùng lại dịch vụ phù hợp đang có, chọn hosting cho website tĩnh/PHP/WordPress hoặc VPS cho Node.js, Python, container, tiến trình nền và yêu cầu quyền root. |
+| **Mua dịch vụ và tên miền** | Duyệt danh mục TINO và chu kỳ thanh toán, kiểm tra tên miền còn trống cùng các trường đăng ký, trình giá để bạn duyệt, tạo đơn đã xác nhận, lấy hóa đơn và liên kết thanh toán, rồi kiểm tra kích hoạt sau thanh toán. |
+| **Triển khai từ máy của bạn** | Xin quyền VPS hoặc cPanel có thời hạn, sau đó để trợ lý tại máy khách tự biên dịch và tải dự án trực tiếp lên đích. VPS Ubuntu 24.04 hoặc 26.04 mới có thể dùng bộ TINO LEMP bootstrap được bảo trì trước khi cấu hình ứng dụng. |
+| **DNS và đưa website vào hoạt động** | Lập kế hoạch và áp dụng bản ghi được hỗ trợ cho tên miền gốc hoặc tên miền phụ bạn sở hữu, trỏ đến dịch vụ đã triển khai và kiểm tra lại DNS công khai. DNS bên ngoài vẫn do bạn kiểm soát; trình kết nối chỉ trả hướng dẫn để bạn tự cấu hình. |
 
-The bundled skills teach the agent how to choose and sequence these workflows.
-MCP tools perform only the account operations that your current connection is
-allowed to use.
+Các kỹ năng đi kèm hướng dẫn trợ lý cách lựa chọn và phối hợp những quy trình này.
+Công cụ MCP chỉ thực hiện các thao tác tài khoản mà kết nối hiện tại của bạn được
+phép sử dụng.
 
-## Start using Tino Connector
+## Bắt đầu sử dụng Tino Connector
 
-After installation and browser consent, start a normal task in your supported
-AI client. You can ask in Vietnamese or English; no command syntax is required.
+Sau khi cài đặt và duyệt quyền trong trình duyệt, hãy bắt đầu một tác vụ bình
+thường trong ứng dụng AI được hỗ trợ. Bạn chỉ cần yêu cầu bằng ngôn ngữ tự nhiên,
+không cần nhớ cú pháp lệnh.
 
-Example prompts in Vietnamese:
+Ví dụ:
 
 - `Kiểm tra trạng thái tài khoản TINO và số điện thoại đã xác minh chưa.`
-- `Liệt kê toàn bộ hosting, VPS, domain và ngày gia hạn của tôi.`
+- `Liệt kê toàn bộ hosting, VPS, tên miền và ngày gia hạn của tôi.`
 - `Tôi còn hóa đơn nào chưa thanh toán?`
 - `Chẩn đoán vì sao example.com không truy cập được.`
-- `Project này nên deploy lên hosting hay VPS? Ưu tiên dịch vụ tôi đang có.`
+- `Dự án này nên triển khai lên hosting hay VPS? Ưu tiên dịch vụ tôi đang có.`
 - `Tìm VPS 4 GB RAM và báo giá theo tháng, chưa đặt mua.`
 - `Kiểm tra tino-example.io.vn còn trống không và báo phí một năm.`
-- `Deploy project hiện tại lên VPS của tôi rồi trỏ staging.example.com.`
-- `Đây là WordPress. Hãy deploy lên hosting đang có và backup trước khi ghi đè.`
-- `VPS này mới tinh. Chạy TINO LEMP bootstrap rồi deploy Laravel và cấu hình Nginx/TLS.`
+- `Triển khai dự án hiện tại lên VPS của tôi rồi trỏ staging.example.com.`
+- `Đây là WordPress. Hãy triển khai lên hosting đang có và sao lưu trước khi ghi đè.`
+- `VPS này mới tinh. Chạy TINO LEMP bootstrap rồi triển khai Laravel và cấu hình Nginx/TLS.`
 - `Cho tôi xem kế hoạch trỏ app.example.com về 203.0.113.10, chưa áp dụng.`
 
-Example prompts in English:
+Với thao tác làm thay đổi dữ liệu hoặc hạ tầng, trợ lý phải hiển thị đúng đối
+tượng và tác động rồi chờ bạn xác nhận. Bạn cũng có thể ghi rõ giới hạn như
+`chỉ lập kế hoạch`, `chưa đặt mua` hoặc `không thay đổi DNS` ngay trong yêu cầu.
 
-- `List my TINO services and their renewal dates.`
-- `Diagnose why example.com is unavailable.`
-- `Recommend hosting or VPS for this project and reuse what I own if possible.`
-- `Find a suitable VPS and show the monthly price. Do not order yet.`
-- `Deploy this project to my VPS and point staging.example.com to it.`
+## Cơ chế triển khai
 
-For a changing operation, the agent should first show the exact target and
-impact, then wait for your confirmation. You may also state a boundary such as
-`plan only`, `do not order yet`, or `do not change DNS` in the request.
+1. Trợ lý AI phía máy khách đọc dự án, xác định môi trường chạy, điểm khởi động,
+   các bước biên dịch và lựa chọn đích phù hợp. Đây không phải nhiệm vụ của máy
+   chủ AIM.
+2. Trợ lý kiểm tra các dịch vụ TINO bạn đang có, trình kế hoạch triển khai rồi
+   xin xác nhận trước khi cấp quyền truy cập hoặc thay đổi hạ tầng đang hoạt
+   động.
+3. Với VPS, trợ lý tạo cặp SSH key trên máy của bạn và chỉ gửi public key. AIM
+   cài public key đó trong thời gian giới hạn rồi trả về host, port, username,
+   thông tin host key để pin, fingerprint và `expires_at`. Với cPanel, AIM trả
+   về hostname cùng UAPI token đã được duyệt và có thời hạn.
+4. Trợ lý dùng thông tin kết nối đó ngay trên máy của bạn để đưa dự án lên đích
+   bằng SSH, `rsync`, SFTP hoặc cPanel UAPI. VPS mới thuộc phiên bản được hỗ trợ có thể
+   chạy tài nguyên chuẩn `tino://scripts/lemp-bootstrap-v2.sh` trước, sau đó mới
+   nhận ứng dụng và cấu hình cơ sở dữ liệu, tiến trình, Nginx, TLS cần thiết.
+5. Trợ lý kiểm tra ứng dụng và địa chỉ công khai, áp dụng kế hoạch DNS đã được
+   duyệt khi bạn yêu cầu, sau đó báo kết quả hoặc khôi phục thay đổi lỗi nếu quy
+   trình tương ứng hỗ trợ.
 
-## How deployment works
+AIM không bao giờ nhận mã nguồn hoặc SSH private key của bạn. AIM chỉ là lớp
+kết nối và cấp quyền; ứng dụng AI phía bạn trực tiếp đọc, biên dịch, tải lên,
+kiểm tra và sửa mã nguồn từ máy của bạn.
 
-1. Your local AI agent reads the project, detects its runtime, entry point and
-   build steps, and chooses a suitable destination. This analysis is not an AIM
-   server task.
-2. The agent checks your TINO inventory, proposes a deployment plan, and asks
-   for confirmation before provisioning access or changing live infrastructure.
-3. For a VPS, the agent creates an SSH key pair on your computer and submits
-   only the public key. AIM installs that public key temporarily and returns the
-   host, port, username, pinned host-key details, fingerprint, and `expires_at`.
-   For cPanel, AIM returns an expiring approved UAPI token and hostname.
-4. The agent uses those credentials from your computer to upload by SSH,
-   `rsync`, SFTP, or cPanel UAPI. A fresh supported VPS can first run the
-   canonical `tino://scripts/lemp-bootstrap-v2.sh` resource, then receive the
-   application, database, process, Nginx, and TLS configuration it needs.
-5. The agent checks the deployed application and public endpoint, applies an
-   approved DNS plan when requested, and reports success or rolls back a failed
-   change where the workflow supports it.
+## Mua dịch vụ và thanh toán
 
-AIM never receives your source code or SSH private key. AIM is the connection
-and authorization layer; your AI client reads, builds, uploads, verifies, and
-repairs the code directly from your computer.
+Kỹ năng mua dịch vụ tìm các thao tác danh mục, tên miền, đơn hàng, hóa đơn và
+thanh toán đang được cấp quyền thay vì tự đoán tham số API. Quy trình thông
+thường:
 
-## Purchasing and payment
+1. Duyệt sản phẩm, chu kỳ thanh toán, giá TLD hoặc kiểm tra tên miền còn trống.
+2. Hiển thị sản phẩm đã chọn, giá, thông tin đăng ký và tác động dự kiến.
+3. Chờ bạn xác nhận rõ ràng rồi tạo đúng một đơn hàng qua `cart.order`.
+4. Lấy hóa đơn vừa tạo, các phương thức thanh toán và liên kết thanh toán.
+5. Bạn tự hoàn tất thanh toán trên trang thanh toán TINO được trả về.
+6. Trợ lý kiểm tra trạng thái hóa đơn và xác nhận dịch vụ hoặc tên miền mới đã
+   xuất hiện trong danh sách tài sản của bạn.
 
-The purchase skill can discover currently allowed catalog, domain, order,
-invoice, and payment operations instead of guessing API parameters. A normal
-purchase flow is:
+Tino Connector không tự chuyển tiền thay bạn và không chuyển sang trình duyệt hoặc
+luồng REST chưa được duyệt để né thao tác hay quyền đang thiếu.
 
-1. Browse products, billing cycles, TLD prices, or domain availability.
-2. Show the selected item, price, registration details, and expected effect.
-3. Wait for your explicit confirmation, then create one order through
-   `cart.order`.
-4. Retrieve the resulting invoice, available payment methods, and payment link.
-5. You complete payment yourself on the returned TINO payment page.
-6. The agent checks the invoice status and confirms that the new service or
-   domain appears in your inventory.
+## An toàn, quyền hạn và giới hạn
 
-The connector does not transfer money on your behalf and does not switch to an
-unapproved browser or REST flow to bypass a missing operation or permission.
+- Đăng nhập và duyệt phạm vi quyền (scope) diễn ra trên website TINO trong
+  trình duyệt. Không dán mật khẩu TINO, OAuth token, SSH private key hoặc cPanel
+  token vào cuộc trò chuyện.
+- Các thao tác chỉ đọc có thể chạy trực tiếp. Việc cấp quyền triển khai, tạo đơn
+  hàng, khởi tạo luồng thanh toán và thay đổi DNS đang hoạt động đều phải được
+  xác nhận rõ đối tượng và tác động.
+- VPS key và cPanel token chỉ có hiệu lực ngắn hạn. Trợ lý phải ngừng sử dụng
+  khi đến `expires_at` và xóa thông tin xác thực tạm trên máy sau khi hoàn thành.
+- Các thao tác khả dụng phụ thuộc vào phạm vi quyền bạn đã duyệt và các công cụ
+  được cung cấp cho ứng dụng đang dùng. Kết nối lại không tự mở rộng quyền; hãy
+  duyệt lượt cấp quyền mới khi thiếu phạm vi cần thiết.
+- Chẩn đoán DNS dùng DNS công khai cùng dữ liệu tên miền và dịch vụ TINO đang
+  khả dụng; trình kết nối không cam kết đọc được mọi bản ghi trong một vùng DNS.
+- Chỉ có thể đổi nameserver khi kết nối hiện tại cung cấp đúng công cụ và quyền
+  `domains:write`. Nếu không, trợ lý phải trình bày thay đổi để bạn tự thực hiện.
+- Bạn có thể thu hồi kết nối bất cứ lúc nào tại cổng quản lý tài khoản TINO.
 
-## Safety, permissions, and limits
+## Cài đặt bằng một lệnh
 
-- Sign-in and scope consent happen on the TINO website in your browser. Do not
-  paste your TINO password, OAuth token, SSH private key, or cPanel token into
-  chat.
-- Read-only checks can run directly. Deployment access, orders, payment-flow
-  initiation, and live DNS changes require confirmation of the concrete target
-  and impact.
-- VPS keys and cPanel tokens are short-lived. The agent must stop using them at
-  `expires_at` and remove temporary local credentials when the task finishes.
-- Available actions depend on the scopes you approve and the tools exposed to your client.
-  Reconnecting does not silently add broader permissions; approve a new grant
-  when a required scope is missing.
-- DNS diagnosis uses public DNS plus available TINO domain and service details;
-  it does not promise access to every record inside a hosted DNS zone.
-- Nameserver updates are available only when the current connection explicitly
-  exposes the matching tool and `domains:write` permission. Otherwise the agent
-  should present the required manual change.
-- You can revoke the connection from your TINO account portal at any time.
-
-## One-command install
-
-macOS or Linux:
+macOS hoặc Linux:
 
 ```bash
 curl -fsSL https://aim.tino.vn/connect | bash
@@ -136,20 +129,20 @@ Windows PowerShell:
 irm https://aim.tino.vn/install.ps1 | iex
 ```
 
-Windows Command Prompt can download and run
-[`install.cmd`](https://github.com/tinovn/tino-connector/blob/main/install.cmd),
-which opens the same PowerShell menu.
+Trên Windows Command Prompt, bạn có thể tải và chạy
+[`install.cmd`](https://github.com/tinovn/tino-connector/blob/main/install.cmd);
+tệp này mở cùng menu PowerShell.
 
-Both `aim.tino.vn` installer URLs serve the matching scripts from this public
-repository, so the source shown here is the source that runs.
+Hai URL bộ cài tại `aim.tino.vn` trả về đúng tập lệnh từ kho mã nguồn công khai
+này, vì vậy mã nguồn hiển thị ở đây chính là mã nguồn được thực thi.
 
-The menu covers Claude Code, VS Code, Cursor, Codex, Zed, Hermes Agent, and a
-manual Remote MCP option. If you download a script first, you can select
-clients without the menu, for example `bash install.sh claude codex hermes` or
-`.\install.ps1 claude codex hermes`. The installers call each client's official
-plugin command or add the Remote MCP declaration; they do not install `tino`
-CLI and do not ask for a TINO password or token. OAuth sign-in and consent
-happen in your browser.
+Menu hỗ trợ Claude Code, VS Code, Cursor, Codex, Zed, Hermes Agent và tùy chọn
+cấu hình Remote MCP thủ công. Nếu tải tập lệnh trước, bạn có thể chọn ứng dụng mà
+không mở menu, ví dụ `bash install.sh claude codex hermes` hoặc
+`.\install.ps1 claude codex hermes`. Bộ cài gọi lệnh plugin chính thức của từng
+ứng dụng hoặc thêm khai báo Remote MCP; bộ cài không cài `tino` CLI và không yêu
+cầu mật khẩu hay token TINO. Đăng nhập OAuth và duyệt quyền diễn ra trong trình
+duyệt.
 
 ## Claude Code
 
@@ -158,14 +151,14 @@ happen in your browser.
 /plugin install tino-connect@tino
 ```
 
-Then run `/mcp`, pick `tino-connect`, and sign in when the browser opens.
-CLI equivalent: `claude plugin marketplace add tinovn/tino-connector` and
+Sau đó chạy `/mcp`, chọn `tino-connect` và đăng nhập khi trình duyệt mở ra.
+Lệnh CLI tương đương: `claude plugin marketplace add tinovn/tino-connector` và
 `claude plugin install tino-connect@tino`.
 
 ## VS Code
 
-Install **Tino Connector** from the Visual Studio Marketplace
-(`tinovn.aim-connector-vscode`), then sign in from the status bar.
+Cài **Tino Connector** từ Visual Studio Marketplace
+(`tinovn.aim-connector-vscode`), sau đó đăng nhập từ thanh trạng thái.
 
 ## Codex
 
@@ -174,8 +167,8 @@ codex plugin marketplace add tinovn/tino-connector
 codex plugin add tino-connect@tino
 ```
 
-Start a new task. Codex loads the Remote MCP server and all seven skills from
-the plugin, then opens TINO OAuth when access is first needed.
+Bắt đầu một tác vụ mới. Codex sẽ tải máy chủ Remote MCP cùng cả bảy kỹ năng từ
+plugin, sau đó mở OAuth TINO khi cần truy cập lần đầu.
 
 ## Hermes Agent
 
@@ -183,42 +176,42 @@ the plugin, then opens TINO OAuth when access is first needed.
 hermes plugins install tinovn/tino-connector --enable
 ```
 
-Restart Hermes Agent, then authenticate the saved connection with
-`hermes mcp login tino-connect`. The browser opens for TINO sign-in and
-consent; after that Hermes loads the Remote MCP tools and the same seven
-skills. Later updates replace the plugin and skills together with
+Khởi động lại Hermes Agent rồi xác thực kết nối đã lưu bằng
+`hermes mcp login tino-connect`. Trình duyệt sẽ mở để đăng nhập TINO và duyệt
+quyền; sau đó Hermes tải công cụ Remote MCP cùng bảy kỹ năng. Các bản cập nhật
+tiếp theo thay đồng thời plugin và kỹ năng bằng
 `hermes plugins update tino-connect`.
 
-## Manual Remote MCP
+## Cấu hình Remote MCP thủ công
 
-Any client that accepts a Remote MCP declaration can use:
+Mọi ứng dụng chấp nhận khai báo Remote MCP đều có thể dùng:
 
 ```json
 {"mcpServers":{"tino-connect":{"type":"http","url":"https://aim.tino.vn/mcp"}}}
 ```
 
-This only tells the client where Tino Connector is. The client performs OAuth
-in your browser; no TINO credential belongs in this JSON.
+Khai báo này chỉ cho ứng dụng biết địa chỉ Tino Connector. Ứng dụng tự thực hiện
+OAuth trong trình duyệt; không đặt thông tin xác thực TINO trong JSON.
 
-## Other MCP clients
+## Các ứng dụng khách MCP khác
 
-See [packages/tino-connect/SETUP.md](packages/tino-connect/SETUP.md) for the
-per-client configuration blocks for Cursor, Antigravity and any client that
-accepts a Remote MCP declaration.
+Xem [packages/tino-connect/SETUP.md](packages/tino-connect/SETUP.md) để lấy khối
+cấu hình riêng cho Cursor, Antigravity và mọi ứng dụng chấp nhận khai báo Remote
+MCP.
 
 ## Zed
 
-The [zed/](zed/) directory carries the Zed server declaration and agent
-skills. Until the extension is available from the Zed registry, copy
-`zed/server.json` into your Zed MCP settings and the `zed/.agents/skills/`
-directory into your project.
+Thư mục [zed/](zed/) chứa khai báo máy chủ và các kỹ năng trợ lý dành cho Zed.
+Trong khi tiện ích chưa có trên kho Zed, hãy sao chép `zed/server.json` vào cấu
+hình MCP của Zed và thư mục `zed/.agents/skills/` vào dự án.
 
-## What is inside
+## Thành phần trong kho mã nguồn
 
-- Repository root — the native Hermes Agent plugin and its seven skills.
-- `packages/tino-connect/` — the Claude Code and Codex plugin: MCP declaration,
-  seven skills (account status, list services, diagnose website, recommend
-  deployment, deploy service, deploy project, purchase service), setup guide.
-- `.agents/plugins/marketplace.json` — the native Codex marketplace.
-- `zed/` — the Zed hand-off assets.
-- Apache-2.0 licensed. Support: support@tino.vn
+- Thư mục gốc — plugin Hermes Agent tích hợp gốc cùng bảy kỹ năng.
+- `packages/tino-connect/` — plugin Claude Code và Codex: khai báo MCP, bảy
+  kỹ năng (`account-status`, `list-services`, `diagnose-website`,
+  `recommend-deployment`, `deploy-service`, `deploy-project`,
+  `purchase-service`) và hướng dẫn cài đặt.
+- `.agents/plugins/marketplace.json` — Marketplace tích hợp gốc cho Codex.
+- `zed/` — tài nguyên cài đặt cho Zed.
+- Giấy phép Apache-2.0. Hỗ trợ: support@tino.vn

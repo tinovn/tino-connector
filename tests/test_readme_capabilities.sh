@@ -12,26 +12,47 @@ require_text() {
   }
 }
 
-require_text '## What you can do after connecting'
-require_text '## Start using Tino Connector'
-require_text '## How deployment works'
-require_text '## Purchasing and payment'
-require_text '## Safety, permissions, and limits'
+reject_text() {
+  local text=$1
+  if grep -Fq -- "$text" "$readme"; then
+    printf 'README still contains untranslated copy: %s\n' "$text" >&2
+    exit 1
+  fi
+}
 
-require_text 'Account and billing'
-require_text 'Hosting, VPS, and domains'
-require_text 'Website diagnosis'
-require_text 'Deployment recommendation'
-require_text 'Purchase services and domains'
-require_text 'Deploy from your computer'
-require_text 'DNS and go-live'
+require_text '## Có thể làm gì sau khi kết nối'
+require_text '## Bắt đầu sử dụng Tino Connector'
+require_text '## Cơ chế triển khai'
+require_text '## Mua dịch vụ và thanh toán'
+require_text '## An toàn, quyền hạn và giới hạn'
+require_text '## Cài đặt bằng một lệnh'
 
-require_text 'Liệt kê toàn bộ hosting, VPS, domain và ngày gia hạn của tôi.'
-require_text 'Deploy project hiện tại lên VPS của tôi rồi trỏ staging.example.com.'
-require_text 'AIM never receives your source code or SSH private key.'
-require_text 'You complete payment yourself on the returned TINO payment page.'
-require_text 'Available actions depend on the scopes you approve and the tools exposed to your client.'
-require_text 'live DNS changes require confirmation of the concrete target'
-require_text 'External DNS stays under your control and receives manual instructions instead.'
+require_text 'Tài khoản và thanh toán'
+require_text 'Hosting, VPS và tên miền'
+require_text 'Chẩn đoán website'
+require_text 'Đề xuất môi trường triển khai'
+require_text 'Mua dịch vụ và tên miền'
+require_text 'Triển khai từ máy của bạn'
+require_text 'DNS và đưa website vào hoạt động'
+
+require_text 'Liệt kê toàn bộ hosting, VPS, tên miền và ngày gia hạn của tôi.'
+require_text 'Triển khai dự án hiện tại lên VPS của tôi rồi trỏ staging.example.com.'
+require_text 'AIM không bao giờ nhận mã nguồn hoặc SSH private key của bạn.'
+require_text 'Bạn tự hoàn tất thanh toán trên trang thanh toán TINO được trả về.'
+require_text 'Các thao tác khả dụng phụ thuộc vào phạm vi quyền bạn đã duyệt và các công cụ'
+require_text 'thay đổi DNS đang hoạt động đều phải được'
+require_text 'xác nhận rõ đối tượng và tác động.'
+require_text 'DNS bên ngoài vẫn do bạn kiểm soát; trình kết nối chỉ trả hướng dẫn để bạn tự cấu hình.'
+
+reject_text '## What you can do after connecting'
+reject_text '## Start using Tino Connector'
+reject_text '## How deployment works'
+reject_text '## Purchasing and payment'
+reject_text '## Safety, permissions, and limits'
+reject_text '## One-command install'
+reject_text 'Example prompts in English:'
+reject_text '## Manual Remote MCP'
+reject_text '## Other MCP clients'
+reject_text '## What is inside'
 
 printf 'readme_capability_contract_ok\n'
