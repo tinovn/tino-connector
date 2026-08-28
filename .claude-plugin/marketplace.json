@@ -1,0 +1,13 @@
+{
+  "name": "tino",
+  "description": "Operate your TINO account and services from an AI agent over Remote MCP with OAuth consent.",
+  "owner": { "name": "TINO", "email": "support@tino.vn" },
+  "plugins": [
+    {
+      "name": "tino-connect",
+      "source": "./packages/tino-connect",
+      "description": "Operate your TINO account and services from an AI agent over Remote MCP with OAuth consent.",
+      "version": "1.0.5"
+    }
+  ]
+}

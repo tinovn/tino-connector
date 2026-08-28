@@ -1,0 +1,1 @@
+{"description":"Operate your TINO account and services from an AI agent over Remote MCP with OAuth consent.","name":"tino","owner":{"email":"support@tino.vn","name":"TINO"},"plugins":[{"description":"Operate your TINO account and services from an AI agent over Remote MCP with OAuth consent.","name":"tino-connect","source":"./","version":"1.0.5"}]}

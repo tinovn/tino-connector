@@ -1,0 +1,1 @@
+{"$schema":"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json","author":{"email":"support@tino.vn","name":"TINO"},"description":"Operate your TINO account and services from an AI agent over Remote MCP with OAuth consent.","keywords":["tino","hosting","domains","mcp"],"license":"Apache-2.0","name":"tino-connect","version":"1.0.5"}
