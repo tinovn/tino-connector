@@ -23,14 +23,29 @@ or put this in the project's `.mcp.json` (it is the file this plugin ships):
 
 ### Codex
 
-Codex reaches TINO through the installed `tino` command-line client, which bridges its standard input to the same remote server. Install the CLI, run `tino login` once, then add to `~/.codex/config.toml`:
+Install the public marketplace and its plugin:
 
-    [mcp_servers.tino-connect]
-    command = "tino"
-    args = ["mcp"]
+    codex plugin marketplace add tinovn/tino-connector
+    codex plugin add tino-connect@tino
+
+Codex then loads the same Remote MCP declaration and all seven skills from the plugin. Start a new task and complete OAuth in the browser when prompted.
 
 ### VS Code, Cursor and Antigravity
 
-VS Code users install the TINO Connect VSIX, which includes Device sign-in, Remote MCP and the same seven skills with no settings. Cursor and Antigravity can use the JSON block above when their native Remote MCP OAuth supports the AIM authorization flow; otherwise use the installed `tino mcp` bridge.
+VS Code users install the TINO Connect VSIX, which includes Device sign-in, Remote MCP and the same seven skills with no settings. Cursor and Antigravity can use the JSON block above when their native Remote MCP OAuth supports the AIM authorization flow.
+
+### Hermes Agent
+
+Install the native plugin from its public Git repository:
+
+    hermes plugins install tinovn/tino-connector --enable
+
+Restart Hermes Agent, then authenticate the saved Remote MCP connection:
+
+    hermes mcp login tino-connect
+
+Hermes loads the OAuth Remote MCP server and all seven skills from the same plugin. The login command opens https://aim.tino.vn for sign-in and consent; the plugin stores no TINO password or token. Update the runtime and skills together with:
+
+    hermes plugins update tino-connect
 
 Support: support@tino.vn

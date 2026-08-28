@@ -1,6 +1,6 @@
 ---
 name: diagnose-website
-description: Diagnose why a website on TINO infrastructure is unreachable or misconfigured. Use when a site is down or DNS looks wrong — "website bị lỗi", "không truy cập được", "DNS sai".
+description: "Diagnose why a website on TINO infrastructure is unreachable or misconfigured. Use when a site is down or DNS looks wrong — \"website bị lỗi\", \"không truy cập được\", \"DNS sai\"."
 ---
 
 # Diagnose a website

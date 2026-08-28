@@ -1,0 +1,9 @@
+name: tino-connect
+version: 1.0.6
+manifest_version: 2
+api_version: 1
+description: "Operate your TINO account and services from an AI agent over Remote MCP with OAuth consent."
+author: "TINO"
+license: Apache-2.0
+homepage: https://aim.tino.vn
+tags: [tino, hosting, domains, mcp, oauth]

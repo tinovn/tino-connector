@@ -1,6 +1,6 @@
 ---
 name: list-services
-description: List the account's hosting, VPS and domain services with their billing cycle and next due date. Use for "what services do I have", renewal date questions, "dịch vụ của tôi", "gia hạn dịch vụ".
+description: "List the account's hosting, VPS and domain services with their billing cycle and next due date. Use for \"what services do I have\", renewal date questions, \"dịch vụ của tôi\", \"gia hạn dịch vụ\"."
 ---
 
 # List TINO services

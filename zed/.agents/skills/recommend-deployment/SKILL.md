@@ -1,6 +1,6 @@
 ---
 name: recommend-deployment
-description: Recommend which TINO service fits a workload before deploying. Use when the user asks where to host an app or site — "nên dùng gói nào", "chọn hosting hay VPS".
+description: "Recommend which TINO service fits a workload before deploying. Use when the user asks where to host an app or site — \"nên dùng gói nào\", \"chọn hosting hay VPS\"."
 ---
 
 # Recommend a TINO deployment target

@@ -1,6 +1,6 @@
 ---
 name: purchase-service
-description: Buy a TINO service through the MCP Gateway tools: browse the catalogue, order, read the invoice and obtain its payment link. Use for "mua hosting", "mua VPS", "đăng ký tên miền", "thanh toán hóa đơn" or buying a service.
+description: "Buy a TINO service through the MCP Gateway tools: browse the catalogue, order, read the invoice and obtain its payment link. Use for \"mua hosting\", \"mua VPS\", \"đăng ký tên miền\", \"thanh toán hóa đơn\" or buying a service."
 ---
 
 # Buy a TINO service or pay an invoice

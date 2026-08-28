@@ -1,6 +1,6 @@
 ---
 name: account-status
-description: Check the authenticated TINO account status and due invoices. Use when the user asks about their TINO account, unpaid bills, "tình trạng tài khoản" or "hóa đơn chưa thanh toán".
+description: "Check the authenticated TINO account status and due invoices. Use when the user asks about their TINO account, unpaid bills, \"tình trạng tài khoản\" or \"hóa đơn chưa thanh toán\"."
 ---
 
 # TINO account status

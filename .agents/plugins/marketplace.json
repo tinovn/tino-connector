@@ -1,0 +1,1 @@
+{"interface":{"displayName":"Tino Connector"},"name":"tino","plugins":[{"category":"Developer Tools","name":"tino-connect","policy":{"authentication":"ON_INSTALL","installation":"AVAILABLE"},"source":{"path":"./packages/tino-connect","source":"local"}}]}

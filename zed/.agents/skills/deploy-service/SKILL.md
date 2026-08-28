@@ -1,6 +1,6 @@
 ---
 name: deploy-service
-description: Point a domain at an existing TINO service: check readiness, then change its DNS records or its nameservers. Use for "trỏ tên miền", "đưa website lên TINO", pointing a domain, or post-deploy checks.
+description: "Point a domain at an existing TINO service: check readiness, then change its DNS records or its nameservers. Use for \"trỏ tên miền\", \"đưa website lên TINO\", pointing a domain, or post-deploy checks."
 ---
 
 # Point a domain at a TINO service

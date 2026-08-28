@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# Tino Connector — trình cài đặt một lệnh.
+# Tino Connector — trình cài đặt chung cho các client được hỗ trợ.
 #
-#   curl -fsSL https://raw.githubusercontent.com/tinovn/tino-connector/main/install.sh | bash
+# Chạy menu sau khi tải và kiểm tra repository:
+#   bash install.sh
+# Hoặc chạy thẳng với tên client, bỏ qua menu:
+#   bash install.sh claude vscode cursor codex zed hermes manual
 #
-# hoặc chạy thẳng với tên client, bỏ qua menu:
-#   bash install.sh claude vscode cursor codex zed manual
-#
-# Script chỉ khai báo máy chủ Remote MCP https://aim.tino.vn/mcp vào client bạn
-# chọn. Không tải mã thực thi, không đụng tài khoản: đăng nhập + duyệt scope
-# luôn diễn ra trong trình duyệt của bạn ở lần kết nối đầu. File cấu hình nào
-# bị sửa đều được sao lưu thành *.bak.<thời-điểm> ngay cạnh.
+# Script gọi trình cài plugin chính thức của client bạn chọn hoặc gộp khai báo
+# Remote MCP https://aim.tino.vn/mcp. Nó không yêu cầu mật khẩu hay token TINO:
+# đăng nhập + duyệt scope luôn diễn ra trong trình duyệt ở lần kết nối đầu. File
+# cấu hình nào bị sửa trực tiếp đều được sao lưu thành *.bak.<thời-điểm> ngay cạnh.
 set -u
 
 MCP_URL="https://aim.tino.vn/mcp"
@@ -85,20 +85,27 @@ PY
 
 install_codex() {
   say "== Codex CLI"
-  local f="$HOME/.codex/config.toml"
-  if grep -qs 'mcp_servers.tino-connect' "$f"; then
-    ok "config đã có sẵn khối tino-connect"
-  else
-    backup "$f"
-    mkdir -p "$HOME/.codex"
-    printf '\n[mcp_servers.tino-connect]\ncommand = "tino"\nargs = ["mcp"]\n' >>"$f"
-    ok "đã thêm khối tino-connect vào $f"
+  if ! have codex; then
+    warn "chưa thấy lệnh 'codex' — cài Codex trước"
+    return
   fi
-  if have tino; then
-    ok "chạy 'tino login' nếu chưa đăng nhập"
+  if codex plugin marketplace add "$MARKETPLACE_REPO" >/dev/null 2>&1; then
+    ok "đã thêm marketplace TINO"
+  elif codex plugin marketplace upgrade tino >/dev/null 2>&1; then
+    ok "marketplace TINO đã có sẵn — vừa cập nhật bản mới nhất"
   else
-    warn "chưa thấy lệnh 'tino' — Codex cần Tino CLI làm cầu nối; xem README của repo này"
+    warn "không thêm hoặc cập nhật được marketplace TINO"
+    return
   fi
+  if codex plugin add "$PLUGIN_SPEC" >/dev/null 2>&1; then
+    ok "đã cài plugin $PLUGIN_SPEC"
+  elif codex plugin list --json 2>/dev/null | grep -q '"pluginId": "tino-connect@tino"'; then
+    ok "plugin đã có sẵn — marketplace vừa được cập nhật"
+  else
+    warn "không cài được tự động; chạy tay: codex plugin add $PLUGIN_SPEC"
+    return
+  fi
+  ok "bước cuối: mở task Codex mới và đăng nhập khi trình duyệt mở"
 }
 
 install_zed() {
@@ -109,14 +116,43 @@ install_zed() {
   say "  chép zed/.agents/skills/ vào dự án nếu client của bạn đọc skill cục bộ."
 }
 
+install_hermes() {
+  say "== Hermes Agent"
+  local fresh_install=0
+  if ! have hermes; then
+    warn "chưa thấy lệnh 'hermes' — cài Hermes Agent trước"
+    return
+  fi
+  if hermes plugins install "$MARKETPLACE_REPO" --enable >/dev/null 2>&1; then
+    fresh_install=1
+    ok "đã cài và bật plugin tino-connect"
+  elif hermes plugins update tino-connect >/dev/null 2>&1; then
+    ok "plugin đã có sẵn — vừa cập nhật plugin và toàn bộ skill"
+  else
+    warn "không cài được tự động; chạy tay: hermes plugins install $MARKETPLACE_REPO --enable"
+    return
+  fi
+  if [ "$fresh_install" -eq 1 ]; then
+    if hermes mcp login tino-connect; then
+      ok "đã hoàn tất OAuth; khởi động lại Hermes Agent để sử dụng"
+    else
+      warn "plugin đã cài; hoàn tất OAuth bằng: hermes mcp login tino-connect"
+    fi
+  else
+    ok "nếu cần đăng nhập lại, chạy: hermes mcp login tino-connect"
+  fi
+}
+
 show_manual() {
   say "== Cấu hình tay cho client MCP bất kỳ"
   say "  Khối JSON (Claude Code, Cursor, VS Code, Antigravity, ...):"
   say "    $MCP_JSON"
-  say "  Codex (~/.codex/config.toml):"
-  say '    [mcp_servers.tino-connect]'
-  say '    command = "tino"'
-  say '    args = ["mcp"]'
+  say "  Codex:"
+  say "    codex plugin marketplace add $MARKETPLACE_REPO"
+  say "    codex plugin add $PLUGIN_SPEC"
+  say "  Hermes Agent:"
+  say "    hermes plugins install $MARKETPLACE_REPO --enable"
+  say "    hermes mcp login tino-connect"
   say "  Chi tiết từng client: packages/tino-connect/SETUP.md"
 }
 
@@ -127,7 +163,8 @@ run_target() {
     3|cursor) install_cursor ;;
     4|codex) install_codex ;;
     5|zed) install_zed ;;
-    6|m|manual) show_manual ;;
+    6|hermes) install_hermes ;;
+    7|m|manual) show_manual ;;
     q|quit) exit 0 ;;
     *) warn "không hiểu lựa chọn: $1" ;;
   esac
@@ -147,7 +184,8 @@ main() {
   say "  3) Cursor             [$(detected cursor)]"
   say "  4) Codex CLI          [$(detected codex)]"
   say "  5) Zed                [$(detected zed)]"
-  say "  6) In cấu hình tay (client MCP bất kỳ)"
+  say "  6) Hermes Agent       [$(detected hermes)]"
+  say "  7) In cấu hình tay (client MCP bất kỳ)"
   say ""
   printf 'Chọn một hoặc nhiều (vd: "1 3", a = mọi client đã phát hiện, q = thoát): '
   local choice=""
@@ -159,6 +197,7 @@ main() {
     have cursor && choice="$choice cursor"
     have codex && choice="$choice codex"
     have zed && choice="$choice zed"
+    have hermes && choice="$choice hermes"
     [ -n "$choice" ] || { warn "không phát hiện client nào trên PATH"; exit 1; }
   fi
   # shellcheck disable=SC2086
