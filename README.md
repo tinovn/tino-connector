@@ -11,10 +11,22 @@ are maintained with each release. Please send feedback to support@tino.vn.
 
 ## Quick install
 
-Use the native installer for your client below. If you downloaded this
-repository from GitHub, `bash install.sh` opens one menu for Claude Code,
-VS Code, Cursor, Codex, Zed and Hermes Agent. A non-interactive example is
-`bash install.sh claude codex hermes`.
+Download the installer, then run it:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/tinovn/tino-connector/main/install.sh -o install.sh
+bash install.sh
+```
+
+`bash install.sh` opens one menu for Claude Code, VS Code, Cursor, Codex, Zed
+and Hermes Agent. To install or update selected clients without the menu, pass
+their names directly:
+
+```bash
+bash install.sh claude
+bash install.sh vscode cursor codex
+bash install.sh zed hermes
+```
 
 The repository deliberately does not recommend piping a remote download into
 a shell. You can inspect `install.sh` before running it. Sign-in and consent
