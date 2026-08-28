@@ -9,6 +9,18 @@ This repository holds the manually installable packages. All content is
 generated from the TINO product source; changes ship as new versions here, so
 please send feedback to support@tino.vn instead of pull requests.
 
+## One-command install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/tinovn/tino-connector/main/install.sh | bash
+```
+
+A menu lets you pick the clients you use (Claude Code, VS Code, Cursor, Codex
+CLI, Zed, or a printed config for any other MCP client). Non-interactive:
+`bash install.sh claude vscode`. The script only declares the remote MCP
+server in the clients you choose and backs up any file it edits; sign-in and
+consent always happen in your own browser.
+
 ## Claude Code
 
 ```

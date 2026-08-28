@@ -12,7 +12,7 @@ browser or call the REST gateway directly.
 
 1. Call `find_gateway_operations` with the canonical operation id below. Read the returned
    `parameters` and `body`; they contain the fields present in the registry contract. If a required
-   nested shape is missing and this skill does not publish its verified shape, do not guess or
+   nested shape is missing and this skill does not publish its exact shape, do not guess or
    call that operation.
 2. If the operation is not returned, this client registration does not grant it. Report that
    refusal and stop; TINO must add both its operation and scope before the user reconnects.
@@ -46,7 +46,7 @@ shape is `{"type": "product", "product_id": <chosen product id>, "cycle": <chose
 <chosen TLD id>, "data": <required registration fields>}`. Omit optional fields instead of
 inventing them, and stop if a required value is absent from those reads.
 
-For `cart.order.body.items[].custom`, use the verified HostBill shape. A `select` choice is
+For `cart.order.body.items[].custom`, use the exact HostBill shape below. A `select` choice is
 `{"<form.id>": {"<chosen item.id>": 1}}`: the inner literal `1` is HostBill's selection
 marker even when that item's `value` is `null`. For another form type, mirror the exact inner
 value shape already returned in `form.value`. Take ids only from the chosen `cart.getProduct`
