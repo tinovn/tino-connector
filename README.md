@@ -162,7 +162,11 @@ Cài **Tino Connector** từ Visual Studio Marketplace
 
 ## Codex
 
+Cần Codex CLI **0.152 trở lên** (bản cũ hơn bỏ qua CIMD và đòi Dynamic Client
+Registration, mà máy chủ không bật — đăng nhập sẽ thất bại).
+
 ```bash
+codex --version
 codex plugin marketplace add tinovn/tino-connector
 codex plugin add tino-connect@tino
 ```

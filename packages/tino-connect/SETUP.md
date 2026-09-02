@@ -1,4 +1,4 @@
-# Setting up TINO Connect
+# Setting up Tino Connector
 
 ## With the plugin
 
@@ -32,7 +32,7 @@ Codex then loads the same Remote MCP declaration and all seven skills from the p
 
 ### VS Code, Cursor and Antigravity
 
-VS Code users install the TINO Connect VSIX, which includes Device sign-in, Remote MCP and the same seven skills with no settings. Cursor and Antigravity can use the JSON block above when their native Remote MCP OAuth supports the AIM authorization flow.
+VS Code users install the Tino Connector VSIX, which includes Device sign-in, Remote MCP and the same seven skills with no settings. Cursor and Antigravity can use the JSON block above when their native Remote MCP OAuth supports the Tino Connector OAuth flow.
 
 ### Hermes Agent
 

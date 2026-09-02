@@ -1,5 +1,5 @@
 name: tino-connect
-version: 1.0.6
+version: 1.0.7
 manifest_version: 1
 api_version: 1
 description: "Operate your TINO account and services from an AI agent over Remote MCP with OAuth consent."

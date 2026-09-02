@@ -89,6 +89,11 @@ install_codex() {
     warn "chưa thấy lệnh 'codex' — cài Codex trước"
     return
   fi
+  codex_version="$(codex --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n1)"
+  if [ -n "$codex_version" ] && [ "$(printf '%s\n' "0.152.0" "$codex_version" | sort -V | head -n1)" != "0.152.0" ]; then
+    warn "Codex $codex_version quá cũ — cần 0.152 trở lên để đăng nhập (CIMD)"
+    return
+  fi
   if codex plugin marketplace add "$MARKETPLACE_REPO" >/dev/null 2>&1; then
     ok "đã thêm marketplace TINO"
   elif codex plugin marketplace upgrade tino >/dev/null 2>&1; then
