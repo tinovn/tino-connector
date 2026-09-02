@@ -1,4 +1,4 @@
-# Set up Tino Connect in Hermes Agent
+# Set up Tino Connector in Hermes Agent
 
 1. Install and enable the plugin:
 
