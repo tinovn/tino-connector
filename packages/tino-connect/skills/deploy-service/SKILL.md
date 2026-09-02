@@ -43,12 +43,15 @@ deploy-project skill; come back here to point the domain.
    - `configure_dns` edits records inside one owned zone. Pass the owned apex
      as `domain`; a record's `name` may be a subdomain. `records` defines only
      the `(name, type)` slots it names, and `prune` removes other answers only
-     inside those named slots. Plan with `apply` false. Apply a direct plan
-     only when `destructive` is false; arbitrary destructive direct plans have
-     no public approval issuer, so stop when `approval_required` is true.
+     inside those named slots. It creates records and updates them
+     non-destructively. Plan with `apply` false and apply only when
+     `destructive` is false: replacing or deleting a live answer needs an
+     approval no tool issues today, so when `approval_required` is true, stop
+     and tell the user to make that change on tino.vn.
 4. Handing the domain to different nameservers — a delegation change, not a
-   record edit — is `update_domain_nameservers`, an optional workflow tool.
-   When the tool list carries it: read `references/nameserver-cutover.md`
+   record edit — is `update_domain_nameservers`, an optional workflow tool the
+   server lists only when this connection holds `domains:write`. When the tool
+   list carries it: read `references/nameserver-cutover.md`
    first, get the same explicit confirmation, then call it with the domain,
    the nameserver hostnames and a new `workflow_retry_key`. Keep the key;
    reuse it verbatim only to retry the identical request. When it is absent,

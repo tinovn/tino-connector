@@ -22,7 +22,8 @@ browser or call the REST gateway directly.
 4. Before an operation marked "changes state", show the price and order fields returned by the
    preceding reads, or the exact selected invoice impact, and get the user's explicit approval.
    Give it a new `retry_key`, and reuse that same key verbatim after an uncertain result; never
-   submit the mutation again with a different key.
+   submit the mutation again with a different key. A result with `replayed` true reports the
+   outcome without the provider's answer, so read the invoice back rather than expecting `data`.
 
 ## Choose one request path
 
