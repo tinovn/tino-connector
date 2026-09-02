@@ -1,4 +1,4 @@
-"""Hermes host adapter for TINO Connect.
+"""Hermes host adapter for Tino Connector.
 
 This module only registers the packaged skills and Hermes' own Remote MCP
 client. It never reads, builds, uploads, or stores customer source code.
@@ -50,7 +50,7 @@ def _ensure_remote_config():
         return config if _save_mcp_server(_SERVER_NAME, config) else None
     if not isinstance(current, dict) or current.get("url") != _SERVER_URL:
         _LOG.warning(
-            "TINO Connect did not replace the existing Hermes MCP server named %s",
+            "Tino Connector did not replace the existing Hermes MCP server named %s",
             _SERVER_NAME,
         )
         return None
@@ -81,4 +81,4 @@ def register(ctx) -> None:
         # Non-interactive startup and Plugin Doctor deliberately cannot open
         # the OAuth browser. The saved native config lets Hermes retry through
         # its normal MCP login/discovery path in the next interactive session.
-        _LOG.info("TINO Connect OAuth will continue in an interactive session: %s", exc)
+        _LOG.info("Tino Connector OAuth will continue in an interactive session: %s", exc)
